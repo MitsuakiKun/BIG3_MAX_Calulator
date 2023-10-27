@@ -1,13 +1,13 @@
-package org.setu.placemark.console.Register
+package MaxCalculator.Register
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.reflect.TypeToken
 import mu.KotlinLogging
-import org.setu.placemark.console.helpers.exists
-import org.setu.placemark.console.helpers.write
-import org.setu.placemark.console.helpers.read
-import org.setu.placemark.console.models.GoalData
+import MaxCalculator.helpers.exists
+import MaxCalculator.helpers.write
+import MaxCalculator.helpers.read
+import MaxCalculator.models.GoalData
 import java.util.ArrayList
 
 class Register {
@@ -28,13 +28,13 @@ class Register {
         return goaldata
     }
 
-    fun findOne(kind: Int) : GoalData? {
-        var foundGoal: GoalData? = goaldata.find { p -> p.kind == kind }
+    fun findOne(username:String, kind: Int) : GoalData? {
+        var foundGoal: GoalData? = goaldata.find { p -> p.username == username && p.kind == kind }
         return foundGoal
     }
 
     fun create(goal: GoalData) {
-        var foundgoal = findOne(goal.kind)
+        var foundgoal = findOne(goal.username,goal.kind)
         if (foundgoal != null){
             foundgoal.goal = goal.goal
             foundgoal.date = goal.date
@@ -58,11 +58,8 @@ class Register {
         goaldata = Gson().fromJson(jsonString, listType)
     }
 
-    fun reset(){
-        goaldata.clear()
+    fun reset(username: String){
+        goaldata.removeIf { it.username == username }
         serialize()
     }
-
-
-
 }

@@ -1,4 +1,4 @@
-package org.setu.placemark.console.helpers
+package MaxCalculator.helpers
 
 import mu.KotlinLogging
 import java.io.*

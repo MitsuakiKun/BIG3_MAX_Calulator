@@ -1,10 +1,10 @@
-package org.setu.placemark.console.Calculate
+package MaxCalculator.Calculate
 
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import mu.KotlinLogging
-import org.setu.placemark.console.helpers.exists
-import org.setu.placemark.console.models.GoalData
+import MaxCalculator.helpers.exists
+import MaxCalculator.models.GoalData
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.IOException
@@ -26,8 +26,8 @@ class DateCalculate {
         }
     }
 
-    fun calculate(kind: Int, MAX: Double):Long{
-        var foundgoal = findOne(kind)
+    fun calculate(username: String,kind: Int, MAX: Double):Long{
+        var foundgoal = findOne(username,kind)
         if (foundgoal != null) {
             var goalDate = foundgoal.date
             val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
@@ -71,8 +71,8 @@ class DateCalculate {
         goaldata = Gson().fromJson(jsonString, listType)
     }
 
-    fun findOne(kind: Int) : GoalData? {
-        var foundGoal: GoalData? = goaldata.find { p -> p.kind == kind }
+    fun findOne(username: String, kind: Int) : GoalData? {
+        var foundGoal: GoalData? = goaldata.find { p -> p.username == username && p.kind == kind }
         return foundGoal
     }
 }

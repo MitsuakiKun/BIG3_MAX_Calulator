@@ -1,8 +1,9 @@
-package org.setu.placemark.console.views
+package MaxCalculator.views
 
-import org.setu.placemark.console.Calculate.MaxCalculate
-import org.setu.placemark.console.Calculate.DateCalculate
-import org.setu.placemark.console.models.GoalData
+import MaxCalculator.Calculate.MaxCalculate
+import MaxCalculator.Calculate.DateCalculate
+import MaxCalculator.models.GoalData
+
 
 class View {
     val calculate = MaxCalculate()
@@ -31,7 +32,7 @@ class View {
         return option
     }
 
-    fun calcBench() {
+    fun calcBench(username: String) {
         val weight: Double?
         val number: Double?
 
@@ -43,13 +44,13 @@ class View {
 
         val MAX: Double = calculate.calcBench(weight,number)
         println("Your predicted bench press MAX weight is "+MAX+" kg.")
-        val remainDate = dateCalculate.calculate(1,MAX)
+        val remainDate = dateCalculate.calculate(username,1,MAX)
         if(remainDate!= (-1).toLong()){
             println("You have "+ remainDate +" days to reach your goal.")
         }
     }
 
-    fun calcSquatDead() {
+    fun calcSquatDead(username: String) {
         val weight: Double?
         val number: Double?
         val selected: Int
@@ -66,7 +67,7 @@ class View {
         val MAX: Double = calculate.calcSquatDead(weight,number).toInt().toDouble()
 
         println("Your predicted squat/dead lift MAX weight is "+ MAX +" kg.")
-        val remainDate = dateCalculate.calculate(selected+1,MAX)
+        val remainDate = dateCalculate.calculate(username,selected+1,MAX)
         if(remainDate!= (-1).toLong()){
             println("You have "+ remainDate +" days to reach your goal.")
         }
@@ -101,7 +102,8 @@ class View {
         }
     }
 
-    fun createData(data: GoalData):Boolean{
+    fun createData(data: GoalData,username: String):Boolean{
+        data.username = username
         println()
         println("1.Bench Press 2.Squat 3.Dead Lift")
         data.kind = readln().toInt()!!

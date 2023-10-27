@@ -1,7 +1,20 @@
 [
   {
+    "username": "mitsuaki",
     "kind": 3,
     "goal": 200.0,
     "date": "2023-11-24"
+  },
+  {
+    "username": "mitsuaki",
+    "kind": 2,
+    "goal": 180.0,
+    "date": "2023-12-24"
+  },
+  {
+    "username": "mitsuaki",
+    "kind": 1,
+    "goal": 120.0,
+    "date": "2024-01-05"
   }
 ]

@@ -1,4 +1,4 @@
-package org.setu.placemark.console.Calculate
+package MaxCalculator.Calculate
 
 class MaxCalculate {
     fun calcBench(weight:Double,number:Double):Double {
